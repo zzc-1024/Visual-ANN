@@ -1,5 +1,5 @@
 .idea
 *.pyc
-tmp/
+tmp
 *.json
 tmp.png
