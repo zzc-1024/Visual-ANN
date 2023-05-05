@@ -30,7 +30,10 @@ class CalculatorSubWindow(NodeEditorWidget):
         self._close_event_listeners = []
 
     def getNodeClassFromData(self, data):
-        if 'op_code' not in data: return Node
+        # if 'op_code' not in data: return Node
+        # 我想作者的意思应该是return None而不是Node
+        # 毕竟没有这个变量
+        if 'op_code' not in data: return None
         return get_class_from_opcode(data['op_code'])
 
     def doEvalOutputs(self):
@@ -129,13 +132,13 @@ class CalculatorSubWindow(NodeEditorWidget):
         except Exception as e: dumpException(e)
 
     def handleNodeContextMenu(self, event):
-        if DEBUG_CONTEXT: print("CONTEXT: NODE")
+        if DEBUG_CONTEXT: print("节点操作")
         context_menu = QMenu(self)
-        markDirtyAct = context_menu.addAction("Mark Dirty")
-        markDirtyDescendantsAct = context_menu.addAction("Mark Descendant Dirty")
-        markInvalidAct = context_menu.addAction("Mark Invalid")
-        unmarkInvalidAct = context_menu.addAction("Unmark Invalid")
-        evalAct = context_menu.addAction("Eval")
+        markDirtyAct = context_menu.addAction("标记脏")
+        markDirtyDescendantsAct = context_menu.addAction("标记后代为脏")
+        markInvalidAct = context_menu.addAction("标记无效")
+        unmarkInvalidAct = context_menu.addAction("取消标记无效")
+        evalAct = context_menu.addAction("计算该节点")
         action = context_menu.exec_(self.mapToGlobal(event.pos()))
 
         selected = None
@@ -161,9 +164,9 @@ class CalculatorSubWindow(NodeEditorWidget):
     def handleEdgeContextMenu(self, event):
         if DEBUG_CONTEXT: print("CONTEXT: EDGE")
         context_menu = QMenu(self)
-        bezierAct = context_menu.addAction("Bezier Edge")
-        directAct = context_menu.addAction("Direct Edge")
-        squareAct = context_menu.addAction("Square Edge")
+        bezierAct = context_menu.addAction("曲边")
+        directAct = context_menu.addAction("直线")
+        squareAct = context_menu.addAction("直角线")
         action = context_menu.exec_(self.mapToGlobal(event.pos()))
 
         selected = None
