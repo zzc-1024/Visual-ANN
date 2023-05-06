@@ -1,5 +1,6 @@
 from qtpy.QtWidgets import QLabel
 from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QMessageBox
 from src.application.calc_conf import register_node, OP_NODE_OUTPUT_LABEL
 from src.application.calc_node_base import CalcNode, CalcGraphicsNode
 from nodeeditor.node_content_widget import QDMNodeContentWidget
@@ -41,10 +42,15 @@ class CalcNode_Output(CalcNode):
             return
 
         # self.content.lbl.setText("%d" % val)
-        print("测试输出" + val.__str__())
         self.content.lbl.setText(val.__str__())
         self.markInvalid(False)
         self.markDirty(False)
         self.grNode.setToolTip("")
 
         return val
+    def onDoubleClicked(self, event):
+        QMessageBox.about(
+            None,
+            "详情",
+            f"{self.content.lbl.text()}"
+        )
