@@ -1,3 +1,4 @@
+# 可以改为merge层
 from qtpy.QtWidgets import QVBoxLayout, QLabel
 from keras.layers import Add
 
