@@ -138,12 +138,17 @@ class CalculatorWindow(NodeEditorWindow):
 
 
     def about(self):
-        QMessageBox.about(self, "关于本软件",
-                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该软件为<b>基于蓝图系统的可视化人工神经网络集成开发环境</b>，"
-                "这是我的毕业设计作品。如有疑问，请加QQ联系:1977309465。<br>"
-                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果想了解我使用的技术栈，可以点击下面这个链接进行访问:"
-                "<a href='https://www.blenderfreak.com/'>www.BlenderFreak.com</a>和"
-                "<a href='https://keras.io/'>https://keras.io/</a>。")
+        QMessageBox.about(
+            self,
+            "关于本软件",
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该软件为<b>基于蓝图系统的可视化人工神经网络集成开发环境</b>，"
+            "这是我的毕业设计作品。如有疑问，请加QQ联系:1977309465。<br>"
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果想了解我使用的技术栈，可以点击下面这个链接进行访问:"
+            "<a href='https://www.blenderfreak.com/'>www.BlenderFreak.com</a>和"
+            "<a href='https://keras.io/'>https://keras.io/</a>。"
+        )
+
+
 
     def createMenus(self):
         super().createMenus()
