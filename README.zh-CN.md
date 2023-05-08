@@ -5,6 +5,8 @@
 
 [![fork](https://gitee.com/zzc1024/Visual-ANN/badge/fork.svg?theme=dark)](https://gitee.com/zzc1024/Visual-ANN/members)
 
+[![zzc1024/基于蓝图系统的人工神经网络可视化集成开发环境](https://gitee.com/zzc1024/Visual-ANN/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/zzc1024/Visual-ANN)
+
 毕业设计作品~
 
 目前正在编码中，尚未完成。
@@ -137,6 +139,12 @@ ResNet是残差神经网络，它的核心为残差网络结构，该结构如�
 
 选择好要保存的位置并填写文件名称后即可保存。
 
+**注意：** 再次打开软件的时候可能会出现节点全是无效的状态，
+这可能是由于未知bug或者是因为本软件使用的框架采取惰性计算的原因导致的。
+当重新加载遇到如下图的情况时，可以右键点击一个无效节点，点击计算该节点即可。
+
+![](docs/images/img.png)
+
 ## 模型操作
 
 对模型的操作有三种方式，分别为编译、保存和检视。
@@ -172,4 +180,4 @@ ResNet是残差神经网络，它的核心为残差网络结构，该结构如�
 
 ![](docs/images/ModelGraph.png)
 
-[![zzc1024/基于蓝图系统的人工神经网络可视化集成开发环境](https://gitee.com/zzc1024/Visual-ANN/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/zzc1024/Visual-ANN)
+图片会临时存储在`src/application/tmp.png`目录下
