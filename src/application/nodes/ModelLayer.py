@@ -13,14 +13,14 @@ from src.application.calc_conf import OP_NODE_LAYER_MODEL
 
 class ModelLayerContent(QDMNodeContentWidget):
     def initUI(self):
-        self.VerticalBox = QVBoxLayout()
-        self.labelTop = QLabel("输入层")
-        self.labelMiddle = QLabel("输入层")
-        self.labelBottom = QLabel("只接入一个自动判断")
-        self.VerticalBox.addWidget(self.labelTop)
-        self.VerticalBox.addWidget(self.labelMiddle)
-        self.VerticalBox.addWidget(self.labelBottom)
-        self.setLayout(self.VerticalBox)
+        # self.VerticalBox = QVBoxLayout()
+        self.labelTop = QLabel("生成模型", self)
+        # self.labelMiddle = QLabel("输入层")
+        # self.labelBottom = QLabel("只接入一个自动判断")
+        # self.VerticalBox.addWidget(self.labelTop)
+        # self.VerticalBox.addWidget(self.labelMiddle)
+        # self.VerticalBox.addWidget(self.labelBottom)
+        # self.setLayout(self.VerticalBox)
 
 @register_node(OP_NODE_LAYER_MODEL)
 class LayerModel(CalcNode):
@@ -37,7 +37,7 @@ class LayerModel(CalcNode):
         self.content = ModelLayerContent(self)
         self.grNode = CalcGraphicsNode(self)
         self.grNode.width = 180
-        self.grNode.height += 74 + 52
+        # self.grNode.height += 74 + 52
 
     def evalImplementation(self):
         i1 = self.getInput(0)

@@ -11,17 +11,17 @@ from src.application.calc_conf import OP_NODE_LAYER_BATCH_NORMALIZATION
 
 class BatchNormalizationLayerNodeContent(QDMNodeContentWidget):
     def initUI(self):
-        self.verticalBox = QVBoxLayout()
-        self.tip = QLabel("批正则化")
-        self.verticalBox.addWidget(self.tip)
-        self.setLayout(self.verticalBox)
+        # self.verticalBox = QVBoxLayout()
+        self.tip = QLabel("批正则化", self)
+        # self.verticalBox.addWidget(self.tip)
+        # self.setLayout(self.verticalBox)
 
 
 @register_node(OP_NODE_LAYER_BATCH_NORMALIZATION)
 class BatchNormalizationLayerNode(CalcNode):
     icon = "icons/dot.png"
     op_code = OP_NODE_LAYER_BATCH_NORMALIZATION
-    op_title = "正则化"
+    op_title = "批正则化"
     content_objname = "batch_normalization_layer_node"
 
     def __init__(self, scene):
@@ -31,7 +31,6 @@ class BatchNormalizationLayerNode(CalcNode):
     def initInnerClasses(self):
         self.content = BatchNormalizationLayerNodeContent(self)
         self.grNode = CalcGraphicsNode(self)
-        self.grNode.height += 22
 
     def evalImplementation(self):
         inp = self.getInput()

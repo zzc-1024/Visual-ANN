@@ -98,12 +98,12 @@ LayerPoolingContent QComboBox#layer_pooling_pooling {
   font-size: 20px;
 }
 BatchNormalizationLayerNodeContent QLabel {
-  background: #666;
-  color: #fff;
-  width: 140px;
-  height: 36px;
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 45px;
+  max-height: 45px;
+  margin-left: 10px;
   margin-top: 5px;
-  margin-left: 5px;
   font-size: 28px;
 }
 DropoutLayerContent QDoubleSpinBox {
@@ -159,6 +159,33 @@ SaveNodeContent QPushButton {
   height: 36px;
   margin-top: 5px;
   margin-left: 5px;
+  font-size: 28px;
+}
+ModelLayerContent QLabel {
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 45px;
+  max-height: 45px;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 28px;
+}
+FlattenLayerNodeContent QLabel {
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 45px;
+  max-height: 45px;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 28px;
+}
+AddLayerNodeContent QLabel {
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 45px;
+  max-height: 45px;
+  margin-left: 10px;
+  margin-top: 5px;
   font-size: 28px;
 }
 QGraphicsView {

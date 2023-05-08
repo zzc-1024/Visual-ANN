@@ -11,7 +11,7 @@ from src.application.calc_conf import OP_NODE_LAYER_FLATTEN
 
 class FlattenLayerNodeContent(QDMNodeContentWidget):
     def initUI(self):
-        self.label = QLabel("将输入层改为一维", self)
+        self.label = QLabel("Flatten", self)
         self.label.setObjectName(self.node.content_objname)
 
 
