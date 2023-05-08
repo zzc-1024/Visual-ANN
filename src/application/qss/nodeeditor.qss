@@ -68,6 +68,99 @@ QDMNodeContentWidget QCheckBox#layer_dense {
   margin-left: 5px;
   font-size: 28px;
 }
+QDMNodeContentWidget QSpinBox#layer_convolution,
+QDMNodeContentWidget QComboBox#layer_convolution {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+QDMNodeContentWidget QSpinBox#layer_pooling,
+QDMNodeContentWidget QComboBox#layer_pooling {
+  background: #666;
+  color: #fff;
+  width: 160px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+LayerPoolingContent QComboBox#layer_pooling_pooling {
+  background: #666;
+  color: #fff;
+  width: 160px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+}
+BatchNormalizationLayerNodeContent QLabel {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+DropoutLayerContent QDoubleSpinBox {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+LayerActivationContent QComboBox,
+LayerActivationContent QDoubleSpinBox {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+CompileNodeContent QComboBox{
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+LoadModelNodeContent QPushButton {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+ShowModelNodeContent QPushButton {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+SaveNodeContent QPushButton {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
 QGraphicsView {
   selection-background-color: #fff;
 }

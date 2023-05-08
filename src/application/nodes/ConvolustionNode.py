@@ -15,18 +15,26 @@ class LayerConvolutionContent(QDMNodeContentWidget):
         self.verticalBox = QVBoxLayout()
         self.filters = QSpinBox()
         self.filters.setMinimum(1)
+        self.filters.setToolTip("filters")
         self.kernelSize = QSpinBox()
         self.kernelSize.setMinimum(1)
+        self.kernelSize.setToolTip("kernelSize")
         self.strides = QSpinBox()
         self.strides.setMinimum(1)
+        self.strides.setToolTip("strides")
         self.padding = QComboBox()
         self.padding.addItem("same")
         self.padding.addItem("valid")
         self.padding.addItem("full")
         self.padding.addItem("causal")
+        self.padding.setToolTip("padding")
+        self.filters.setObjectName(self.node.content_objname)
         self.verticalBox.addWidget(self.filters)
+        self.kernelSize.setObjectName(self.node.content_objname)
         self.verticalBox.addWidget(self.kernelSize)
+        self.strides.setObjectName(self.node.content_objname)
         self.verticalBox.addWidget(self.strides)
+        self.padding.setObjectName(self.node.content_objname)
         self.verticalBox.addWidget(self.padding)
         self.setLayout(self.verticalBox)
 
@@ -65,8 +73,10 @@ class LayerConvolutionNode(CalcNode):
     def initInnerClasses(self):
         self.content = LayerConvolutionContent(self)
         self.grNode = CalcGraphicsNode(self)
+        self.grNode.width = 200
         self.grNode.height += 74
         self.grNode.height += 52 * 2
+        self.grNode.height += 10  # 一点点试出来的结果
         self.content.filters.textChanged.connect(self.onInputChanged)
         self.content.kernelSize.textChanged.connect(self.onInputChanged)
         self.content.strides.textChanged.connect(self.onInputChanged)

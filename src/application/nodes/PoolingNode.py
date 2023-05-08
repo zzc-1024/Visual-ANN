@@ -13,25 +13,31 @@ from src.application.calc_conf import OP_NODE_LAYER_POOLING
 class LayerPoolingContent(QDMNodeContentWidget):
     def initUI(self):
         self.verticalBox = QVBoxLayout()
-        self.pooling = QComboBox(self)
-        self.pooling.addItem("AveragePooling2D")
-        self.pooling.addItem("MaxPooling2D")
-        self.pooling.addItem("GlobalAveragePooling2D")
-        self.pooling.addItem("GlobalMaxPooling2D")
+        self.pooling = QComboBox()
+        self.pooling.addItem("AvgPool2D")
+        self.pooling.addItem("MaxPool2D")
+        self.pooling.addItem("GlobalAvgPool2D")
+        self.pooling.addItem("GlobalMaxPool2D")
+        self.pooling.setToolTip("pooling")
+        self.pooling.setObjectName(self.node.content_objname + "_pooling")
 
         self.poolSize = QSpinBox()
         self.poolSize.setMinimum(1)
-        self.poolSize.setToolTip("池化尺寸")
+        self.poolSize.setToolTip("poolSize")
+        self.poolSize.setObjectName(self.node.content_objname)
 
         self.padding = QComboBox()
         self.padding.addItem("same")
         self.padding.addItem("valid")
-        self.padding.addItem("full")
-        self.padding.addItem("causal")
+        # self.padding.addItem("full")
+        # self.padding.addItem("causal")
+        self.padding.setToolTip("padding")
+        self.padding.setObjectName(self.node.content_objname)
 
         self.strides = QSpinBox()
         self.strides.setMinimum(1)
-        self.strides.setToolTip("步长")
+        self.strides.setToolTip("strides")
+        self.strides.setObjectName(self.node.content_objname)
 
         self.verticalBox.addWidget(self.pooling)
         self.verticalBox.addWidget(self.poolSize)
@@ -74,6 +80,7 @@ class LayerPoolingNode(CalcNode):
     def initInnerClasses(self):
         self.content = LayerPoolingContent(self)
         self.grNode = CalcGraphicsNode(self)
+        self.grNode.width = 220
         self.grNode.height += 74
         self.grNode.height += 52 * 2
         self.content.pooling.currentIndexChanged.connect(self.onInputChanged)
@@ -89,7 +96,6 @@ class LayerPoolingNode(CalcNode):
             self.markInvalid()
             return None
         inp = inp.eval()
-        pooling = self.content.pooling.currentText()
         poolSize = self.content.poolSize.value()
         padding = self.content.padding.currentText()
         strides = self.content.strides.value()

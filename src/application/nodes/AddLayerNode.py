@@ -35,10 +35,7 @@ class AddLayerNode(CalcNode):
 
     def evalOperation(self, input1, input2):
         return [
-            Add()([
-                input1[0],
-                input2[0]
-            ]),
+            input1[0],
             Add()([
                 input1[1],
                 input2[1]

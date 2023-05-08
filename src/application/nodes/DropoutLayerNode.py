@@ -15,6 +15,7 @@ class DropoutLayerContent(QDMNodeContentWidget):
         self.rate = QDoubleSpinBox()
         self.rate.setMinimum(0.0)
         self.rate.setMaximum(1.0)
+        self.rate.setObjectName(self.node.content_objname)
         self.verticalBox.addWidget(self.rate)
         self.setLayout(self.verticalBox)
 
@@ -47,6 +48,8 @@ class DropoutLayerNode(CalcNode):
     def initInnerClasses(self):
         self.content = DropoutLayerContent(self)
         self.grNode = CalcGraphicsNode(self)
+        self.grNode.width = 200
+        self.grNode.height += 22
         self.content.rate.textChanged.connect(self.onInputChanged)
 
     def evalImplementation(self):

@@ -38,6 +38,7 @@ class ShowModelNode(CalcNode):
     def initInnerClasses(self):
         self.content = ShowModelNodeContent(self)
         self.grNode = CalcGraphicsNode(self)
+        self.grNode.width = 180
         self.grNode.height += 74
         self.content.showSummary.clicked.connect(self.onShowSummary)
         self.content.showGraph.clicked.connect(self.onShowGraph)

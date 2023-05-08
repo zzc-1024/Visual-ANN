@@ -29,7 +29,9 @@ class LayerActivationContent(QDMNodeContentWidget):
         self.activation.addItem("tanh")
         self.activation.addItem("exponential")
         self.activation.addItem("hard_sigmoid")
+        self.activation.setObjectName(self.node.content_objname)
         self.floatData = QDoubleSpinBox()
+        self.floatData.setObjectName(self.node.content_objname)
         self.verticalBox.addWidget(self.activation)
         self.verticalBox.addWidget(self.floatData)
         self.setLayout(self.verticalBox)
@@ -64,8 +66,9 @@ class LayerActivation(CalcNode):
     def initInnerClasses(self):
         self.content = LayerActivationContent(self)
         self.grNode = CalcGraphicsNode(self)
+        self.grNode.width = 200
+        self.grNode.height += 74
         self.content.activation.currentIndexChanged.connect(self.onInputChanged)
-        self.grNode.height += 52
 
     def evalImplementation(self):
         inp = self.getInput()

@@ -58,6 +58,10 @@ class LayerModel(CalcNode):
             i1 = i1.eval()
             i2 = i2.eval()
             value = self.evalOperation(i1[0], i2[1])
+        if value[1] is None:
+            self.markDirty()
+            self.markInvalid()
+            return None
         self.value = value
         self.markDirty(False)
         self.markInvalid(False)
@@ -66,4 +70,9 @@ class LayerModel(CalcNode):
         return value
 
     def evalOperation(self, input1, input2):
-        return [input1, Model(input1, input2)]
+        model = None
+        try:
+            model = Model(input1, input2)
+        except Exception as e:
+            dumpException(e)
+        return [input1, model]

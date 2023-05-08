@@ -31,6 +31,7 @@ class BatchNormalizationLayerNode(CalcNode):
     def initInnerClasses(self):
         self.content = BatchNormalizationLayerNodeContent(self)
         self.grNode = CalcGraphicsNode(self)
+        self.grNode.height += 22
 
     def evalImplementation(self):
         inp = self.getInput()

@@ -36,6 +36,7 @@ class CompileNodeContent(QDMNodeContentWidget):
         self.loss.addItem("KLDivergence")
         self.loss.addItem("Huber")
         self.loss.addItem("CosineSimilarity")
+        self.loss.setObjectName(self.node.content_objname)
 
         self.optimizer = QComboBox()
         self.optimizer.addItem("adadelta")
@@ -50,6 +51,7 @@ class CompileNodeContent(QDMNodeContentWidget):
         self.optimizer.addItem("rmsprop")
         self.optimizer.addItem("sgd")
         self.optimizer.addItem("ftrl")
+        self.optimizer.setObjectName(self.node.content_objname)
         # 报错，可能是还需要提供一些参数吧
         # self.optimizer.addItem("lossscaleoptimizer")
         # self.optimizer.addItem("lossscaleoptimizerv3")
