@@ -1,6 +1,8 @@
 基于蓝图系统的人工神经网络可视化集成开发环境
 =
 
+# 项目状态
+
 [![stars](https://gitee.com/zzc1024/Visual-ANN/badge/star.svg?theme=dark)](https://gitee.com/zzc1024/Visual-ANN/stargazers)
 
 [![fork](https://gitee.com/zzc1024/Visual-ANN/badge/fork.svg?theme=dark)](https://gitee.com/zzc1024/Visual-ANN/members)
@@ -35,7 +37,7 @@
 
 4. **状态栏**。提示用户当前的状态或者某些操作。
 
-## 搭建模型
+## 理论准备
 
 以keras官网上的A toy ResNet为例，实现一个如下图所示的简单ResNet模型。
 
@@ -72,6 +74,11 @@ model.summary()
 ResNet是残差神经网络，它的核心为残差网络结构，该结构如下图所示：
 
 [![](https://pic1.zhimg.com/v2-b7f64e7b4cef601614413629063b5738_r.jpg)](https://zhuanlan.zhihu.com/p/349717627)
+
+## 搭建模型
+
+**注意：** 以下步骤中有部分内容存在谬误，仅供学习参考。如果想要参照设计，
+照葫芦画瓢的话，请翻到下面的最终截图的位置。
 
 我们首先要做的是设计基本的残差网络结构。
 

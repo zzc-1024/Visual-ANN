@@ -546,7 +546,7 @@
                 }
             ],
             "content": {
-                "units": 64,
+                "units": 256,
                 "activation": 1,
                 "useBias": true
             },
