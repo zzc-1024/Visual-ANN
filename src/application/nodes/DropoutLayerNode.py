@@ -62,7 +62,8 @@ class DropoutLayerNode(CalcNode):
         inp = inp.eval()
         rate = self.content.rate.value()
         value = Dropout(rate)(inp[1])
-        self.value = [inp[0], value]
+        value = [inp[0], value]
+        self.value = value
         self.markDirty(False)
         self.markInvalid(False)
         self.markDescendantsDirty()
