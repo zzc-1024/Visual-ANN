@@ -1,6 +1,11 @@
+# Project files
 .idea
+
+# Forbidden kinds of file
 *.pyc
-tmp
 *.json
+
+# Temporary files or folders
 tmp.png
 tmp.py
+tmp
