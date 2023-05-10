@@ -3,8 +3,11 @@
 A module containing the Main Window class
 """
 import os, json
+
 from qtpy.QtCore import QSize, QSettings, QPoint
 from qtpy.QtWidgets import QMainWindow, QLabel, QAction, QMessageBox, QFileDialog, QApplication
+from qtpy.QtWidgets import QInputDialog
+
 from nodeeditor.node_editor_widget import NodeEditorWidget
 
 
@@ -59,6 +62,7 @@ class NodeEditorWindow(QMainWindow):
     def createActions(self):
         """Create basic `File` and `Edit` actions"""
         self.actNew = QAction('新建(&N)', self, shortcut='Ctrl+N', statusTip="新建一个新的图", triggered=self.onFileNew)
+        self.actTemplate = QAction("模板(&T)", self, shortcut="Ctrl-T", statusTip="从模板中新建", triggered=self.onFileTemplate)
         self.actOpen = QAction('打开(&O)', self, shortcut='Ctrl+O', statusTip="打开文件", triggered=self.onFileOpen)
         self.actSave = QAction('保存(&S)', self, shortcut='Ctrl+S', statusTip="保存当前文件", triggered=self.onFileSave)
         self.actSaveAs = QAction('另存为...(&A)', self, shortcut='Ctrl+Shift+S', statusTip="将当前文件另存为...", triggered=self.onFileSaveAs)
@@ -81,6 +85,7 @@ class NodeEditorWindow(QMainWindow):
         menubar = self.menuBar()
         self.fileMenu = menubar.addMenu('文件(&F)')
         self.fileMenu.addAction(self.actNew)
+        self.fileMenu.addAction(self.actTemplate)
         self.fileMenu.addSeparator()
         self.fileMenu.addAction(self.actOpen)
         self.fileMenu.addAction(self.actSave)
@@ -179,6 +184,38 @@ class NodeEditorWindow(QMainWindow):
             self.getCurrentNodeEditorWidget().fileNew()
             self.setTitle()
 
+    def onFileTemplate(self):
+        # 先从指定路径获取可用模板列表
+        path = os.curdir
+        path += "/template"
+        root, _, files = next(os.walk(path))
+
+        # 若没有可用模板则提示错误
+        if len(files) == 0:
+            QMessageBox.warning(None, "警告", "无可用模板")
+            return
+
+        # 获取可用模板
+        count: int = 0
+        lst = []
+        for iterator in files:
+            base, ext = os.path.splitext(iterator)
+            if ext != ".json":
+                continue
+            count += 1
+            lst.append(base)
+
+        # 展示可用模板
+        value, ok = QInputDialog.getItem(None, "加载模板", "请选择模板", lst, 0, False)
+
+        # 加载可用模板
+        if not ok:
+            return
+        if self.maybeSave():
+            path = os.path.join(path, value + '.json')
+            self.getCurrentNodeEditorWidget().fileLoad(path)
+            self.setTitle()
+            QMessageBox.warning(None, "警告", "该部分尚未实现新建文件")
 
     def onFileOpen(self):
         """Handle File Open operation"""

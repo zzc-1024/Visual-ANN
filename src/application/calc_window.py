@@ -2,6 +2,7 @@ import os
 from qtpy.QtGui import QIcon, QKeySequence
 from qtpy.QtWidgets import QMdiArea, QWidget, QDockWidget, QAction, QMessageBox, QFileDialog
 from qtpy.QtCore import Qt, QSignalMapper
+from qtpy.QtWidgets import QInputDialog
 
 from nodeeditor.utils import loadStylesheets
 from nodeeditor.node_editor_window import NodeEditorWindow
@@ -113,6 +114,48 @@ class CalculatorWindow(NodeEditorWindow):
             subwnd.widget().fileNew()
             subwnd.show()
         except Exception as e: dumpException(e)
+
+    def onFileTemplate(self):
+        # 先从指定路径获取可用模板列表
+        path = os.curdir
+        path += "/template"
+        root, _, files = next(os.walk(path))
+
+        # 若没有可用模板则提示错误
+        if len(files) == 0:
+            QMessageBox.warning(self, "警告", "无可用模板")
+            return
+
+        # 获取可用模板
+        count: int = 0
+        lst = []
+        for iterator in files:
+            base, ext = os.path.splitext(iterator)
+            if ext != ".json":
+                continue
+            count += 1
+            lst.append(base)
+
+        # 让用户选择
+        value, ok = QInputDialog.getItem(self, "加载模板", "请选择模板", lst, 0, False)
+
+        # 加载可用模板
+        if not ok:
+            return
+        try:
+            nodeeditor = CalculatorSubWindow()
+            path = os.path.join(path, value + ".json")
+            if nodeeditor.fileLoad(path):
+                # self.statusBar().showMessage("模板 %s 已被加载" % fname, 5000)
+                nodeeditor.filename = None
+                nodeeditor.setTitle()
+                nodeeditor.doEvalOutputs()
+                subWindow = self.createMdiChild(nodeeditor)
+                subWindow.show()
+            else:
+                nodeeditor.close()
+        except Exception as e:
+            dumpException(e)
 
 
     def onFileOpen(self):
