@@ -153,6 +153,7 @@ class NodeEditorWidget(QWidget):
         return True
 
 
+# 下面这些没有用，是示例里头的东西，删了也不影响
     def addNodes(self):
         """Testing method to create 3 `Nodes` with 3 `Edges` connecting them"""
         node1 = Node(self.scene, "My Awesome Node 1", inputs=[0,0,0], outputs=[1,5])
