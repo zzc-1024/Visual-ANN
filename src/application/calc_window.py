@@ -116,6 +116,37 @@ class CalculatorWindow(NodeEditorWindow):
         except Exception as e: dumpException(e)
 
     def onFileTemplate(self):
+        from qtpy.QtWidgets import QDialog, QDialogButtonBox
+        from qtpy.QtWidgets import QVBoxLayout
+        from qtpy.QtCore import Qt
+        from qtpy.QtWidgets import QLabel, QPushButton
+
+        class Dialog(QDialog):
+            def __init__(self, parent=None):
+                super(Dialog, self).__init__(parent)
+                self.initUI()
+
+            def initUI(self):
+                layout = QVBoxLayout()
+                self.setLayout(layout)
+
+                layout.addWidget(QLabel("请选择模板操作"))
+
+                buttonBox = QDialogButtonBox(Qt.Horizontal)
+                layout.addWidget(buttonBox)
+
+                self.load = QPushButton("加载")
+                self.add = QPushButton("导入")
+                self.delete = QPushButton("删除")
+                buttonBox.addButton(self.load, QDialogButtonBox.ActionRole)
+                buttonBox.addButton(self.add, QDialogButtonBox.ActionRole)
+                buttonBox.addButton(self.delete, QDialogButtonBox.ActionRole)
+
+        dialog = Dialog()
+        dialog.exec()
+
+
+    def onFileTemplate_temp(self):
         # 先从指定路径获取可用模板列表
         path = os.curdir
         path += "/template"
