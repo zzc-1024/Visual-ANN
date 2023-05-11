@@ -48,6 +48,8 @@
 ```python3
 import keras
 from keras import layers
+
+
 inputs = keras.Input(shape=(32, 32, 3), name="img")
 x = layers.Conv2D(32, 3, activation="relu")(inputs)
 x = layers.Conv2D(64, 3, activation="relu")(x)
@@ -188,3 +190,17 @@ ResNet是残差神经网络，它的核心为残差网络结构，该结构如�
 ![](docs/images/ModelGraph.png)
 
 图片会临时存储在`src/application/tmp.png`目录下
+
+## 加载模板
+
+依次点击“文件”->“模板”，弹出如下对话框：
+
+![](docs/images/Template.png)
+
+选择好想要使用的模板加载后，点击“OK”后即可加载出如下的模板：
+
+![](docs/images/OnTemplate.png)
+
+加载的模板需要用户另行保存到本地。
+
+由于计算节点会消耗很多时间，因此这里需要用户选择手动计算节点，
