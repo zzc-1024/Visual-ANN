@@ -1,4 +1,6 @@
 import os
+from shutil import copy
+
 from qtpy.QtGui import QIcon, QKeySequence
 from qtpy.QtWidgets import QMdiArea, QWidget, QDockWidget, QAction, QMessageBox, QFileDialog
 from qtpy.QtCore import Qt, QSignalMapper
@@ -118,8 +120,8 @@ class CalculatorWindow(NodeEditorWindow):
     def onFileTemplate(self):
         from qtpy.QtWidgets import QDialog, QDialogButtonBox
         from qtpy.QtWidgets import QVBoxLayout
-        from qtpy.QtCore import Qt
         from qtpy.QtWidgets import QLabel, QPushButton
+
 
         class Dialog(QDialog):
             def __init__(self, parent=None):
@@ -136,17 +138,22 @@ class CalculatorWindow(NodeEditorWindow):
                 layout.addWidget(buttonBox)
 
                 self.load = QPushButton("加载")
-                self.add = QPushButton("导入")
-                self.delete = QPushButton("删除")
+                self.load.clicked.connect(self.close)
                 buttonBox.addButton(self.load, QDialogButtonBox.ActionRole)
+
+                self.add = QPushButton("导入")
                 buttonBox.addButton(self.add, QDialogButtonBox.ActionRole)
+
+                self.delete = QPushButton("删除")
                 buttonBox.addButton(self.delete, QDialogButtonBox.ActionRole)
 
         dialog = Dialog()
+        dialog.load.clicked.connect(self.onFileTemplateLoad)
+        dialog.add.clicked.connect(self.onFileTemplateAdd)
+        dialog.delete.clicked.connect(self.onFileTemplateDelete)
         dialog.exec()
 
-
-    def onFileTemplate_temp(self):
+    def onFileTemplateLoad(self):
         # 先从指定路径获取可用模板列表
         path = os.curdir
         path += "/template"
@@ -188,9 +195,22 @@ class CalculatorWindow(NodeEditorWindow):
         except Exception as e:
             dumpException(e)
 
+    def onFileTemplateAdd(self):
+        fnames, filter = QFileDialog.getOpenFileNames(self, '从文件中打开', self.getFileDialogDirectory(),
+                                                      self.getFileDialogFilter())
+        try:
+            for filename in fnames:
+                if not filename:
+                    continue
+                copy(filename, "./template")
+        except Exception as e: dumpException(e)
+
+    def onFileTemplateDelete(self):
+        pass
 
     def onFileOpen(self):
-        fnames, filter = QFileDialog.getOpenFileNames(self, '从文件中打开', self.getFileDialogDirectory(), self.getFileDialogFilter())
+        fnames, filter = QFileDialog.getOpenFileNames(self, '从文件中打开',
+                                                      self.getFileDialogDirectory(), self.getFileDialogFilter())
 
         try:
             for fname in fnames:
