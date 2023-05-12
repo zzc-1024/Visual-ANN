@@ -206,7 +206,16 @@ class CalculatorWindow(NodeEditorWindow):
         except Exception as e: dumpException(e)
 
     def onFileTemplateDelete(self):
-        pass
+        # 安全地获取可删除文件列表
+
+        # 开始删除
+        try:
+            for filename in filenames:
+                if not filename:
+                    continue
+                os.remove(filename)
+        except Exception as e:
+            dumpException(e)
 
     def onFileOpen(self):
         fnames, filter = QFileDialog.getOpenFileNames(self, '从文件中打开',
