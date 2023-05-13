@@ -68,7 +68,7 @@ class LayerInputContent(QDMNodeContentWidget):
 
 @register_node(OP_NODE_LAYER_INPUT)
 class LayerInput(CalcNode):
-    icon = "icons/dot.png"
+    icon = "icons/in.png"
     op_code = OP_NODE_LAYER_INPUT
     op_title = "输入层"
     content_objname = "layer_input"

@@ -28,7 +28,7 @@ class CalcInputContent(QDMNodeContentWidget):
         return res
 
 
-@register_node(OP_NODE_INPUT_INT)
+# @register_node(OP_NODE_INPUT_INT)
 class CalcNode_Input(CalcNode):
     icon = "icons/in.png"
     op_code = OP_NODE_INPUT_INT

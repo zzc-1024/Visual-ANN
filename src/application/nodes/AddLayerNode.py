@@ -19,7 +19,7 @@ class AddLayerNodeContent(QDMNodeContentWidget):
 
 @register_node(OP_NODE_LAYER_ADD)
 class AddLayerNode(CalcNode):
-    icon = "icons/dot.png"
+    icon = "icons/add.png"
     op_code = OP_NODE_LAYER_ADD
     op_title = "张量合并之加法"
     content_objname = "add_layer_node"
