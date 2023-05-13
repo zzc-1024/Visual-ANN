@@ -1,6 +1,9 @@
 # Project files
 .idea
 
+# Folder
+dissertation
+
 # Forbidden kinds of file
 *.pyc
 *.json
