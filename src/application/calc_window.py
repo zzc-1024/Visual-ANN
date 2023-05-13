@@ -159,11 +159,6 @@ class CalculatorWindow(NodeEditorWindow):
         path += "/template"
         root, _, files = next(os.walk(path))
 
-        # 若没有可用模板则提示错误
-        if len(files) == 0:
-            QMessageBox.warning(self, "警告", "无可用模板")
-            return
-
         # 获取可用模板
         count: int = 0
         lst = []
@@ -173,6 +168,11 @@ class CalculatorWindow(NodeEditorWindow):
                 continue
             count += 1
             lst.append(base)
+
+        # 若没有可用模板则提示错误
+        if count == 0:
+            QMessageBox.warning(self, "警告", "无可用模板")
+            return
 
         # 让用户选择
         value, ok = QInputDialog.getItem(self, "加载模板", "请选择模板", lst, 0, False)
@@ -203,17 +203,39 @@ class CalculatorWindow(NodeEditorWindow):
                 if not filename:
                     continue
                 copy(filename, "./template")
-        except Exception as e: dumpException(e)
+        except Exception as e:
+            dumpException(e)
 
     def onFileTemplateDelete(self):
-        # 安全地获取可删除文件列表
+        # 先从指定路径获取可删除模板列表
+        path = os.curdir
+        path += "/template"
+        root, _, files = next(os.walk(path))
+
+        # 获取可用模板
+        count: int = 0
+        lst = []
+        for iterator in files:
+            base, ext = os.path.splitext(iterator)
+            if ext != ".json":
+                continue
+            count += 1
+            lst.append(base)
+
+        # 若没有可用模板则提示错误
+        if count == 0:
+            QMessageBox.warning(self, "警告", "无可用模板")
+            return
+
+        # 让用户选择
+        value, ok = QInputDialog.getItem(self, "加载模板", "请选择模板", lst, 0, False)
 
         # 开始删除
+        if not ok:
+            return
         try:
-            for filename in filenames:
-                if not filename:
-                    continue
-                os.remove(filename)
+            path = os.path.join(path, value + ".json")
+            os.remove(path)
         except Exception as e:
             dumpException(e)
 
