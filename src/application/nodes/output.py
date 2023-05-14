@@ -49,8 +49,15 @@ class CalcNode_Output(CalcNode):
 
         return val
     def onDoubleClicked(self, event):
-        QMessageBox.about(
-            None,
-            "详情",
-            f"{self.content.lbl.text()}"
-        )
+        try:
+            QMessageBox.about(
+                None,
+                "详情",
+                f"{self.content.lbl.text()}"
+            )
+        except Exception as e:
+            QMessageBox.about(
+                None,
+                "详情",
+                f"{e.__str__()}"
+            )

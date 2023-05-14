@@ -32,7 +32,7 @@ class ShowModelNode(CalcNode):
     content_objname = "show_model_node"
 
     def __init__(self, scene):
-        super().__init__(scene, inputs=[2], outputs=[3])
+        super().__init__(scene, inputs=[2], outputs=[])
         self.eval()
 
     def initInnerClasses(self):
@@ -50,7 +50,14 @@ class ShowModelNode(CalcNode):
             self.markDirty()
             self.markInvalid()
             return
-        self.value = inp.eval()
+
+        inp = inp.eval()
+
+        if inp is None:
+            self.markInvalid()
+            return
+
+        self.value = inp
         self.markDirty(False)
         self.markInvalid(False)
         self.markDescendantsDirty()
@@ -81,3 +88,17 @@ class ShowModelNode(CalcNode):
             )
         except Exception as e:
             dumpException(e)
+
+    def onDoubleClicked(self, event):
+        try:
+            QMessageBox.about(
+                None,
+                "详情",
+                f"{self.value}"
+            )
+        except Exception as e:
+            QMessageBox.about(
+                None,
+                "详情",
+                f"{e.__str__()}"
+            )
