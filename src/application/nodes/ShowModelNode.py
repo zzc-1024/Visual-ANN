@@ -26,7 +26,7 @@ global summary
 
 @register_node(OP_NODE_SHOW_MODEL)
 class ShowModelNode(CalcNode):
-    icon = "icons/dot.png"
+    icon = "icons/out.png"
     op_code = OP_NODE_SHOW_MODEL
     op_title = "展示"
     content_objname = "show_model_node"
