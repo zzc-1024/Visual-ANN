@@ -62,10 +62,11 @@ class NodeEditorWindow(QMainWindow):
     def createActions(self):
         """Create basic `File` and `Edit` actions"""
         self.actNew = QAction('新建(&N)', self, shortcut='Ctrl+N', statusTip="新建一个新的图", triggered=self.onFileNew)
-        self.actTemplate = QAction("模板(&T)", self, shortcut="Ctrl-T", statusTip="从模板中新建", triggered=self.onFileTemplate)
+        self.actTemplate = QAction("模板(&T)", self, shortcut="Ctrl+T", statusTip="从模板中新建", triggered=self.onFileTemplate)
         self.actOpen = QAction('打开(&O)', self, shortcut='Ctrl+O', statusTip="打开文件", triggered=self.onFileOpen)
         self.actSave = QAction('保存(&S)', self, shortcut='Ctrl+S', statusTip="保存当前文件", triggered=self.onFileSave)
         self.actSaveAs = QAction('另存为...(&A)', self, shortcut='Ctrl+Shift+S', statusTip="将当前文件另存为...", triggered=self.onFileSaveAs)
+        self.actExtend = QAction('扩展(&E)', self, statusTip="操作扩展节点", triggered=self.onFileExtend)
         self.actExit = QAction('退出(&X)', self, shortcut='Ctrl+Q', statusTip="退出当前程序", triggered=self.close)
 
         self.actUndo = QAction('撤销(&U)', self, shortcut='Ctrl+Z', statusTip="撤销刚才的操作", triggered=self.onEditUndo)
@@ -260,6 +261,9 @@ class NodeEditorWindow(QMainWindow):
         Event triggered after choosing filename and before actual fileSave(). We are passing current_nodeeditor because
         we will loose focus after asking with QFileDialog and therefore getCurrentNodeEditorWidget will return None
         """
+        pass
+
+    def onFileExtend(self):
         pass
 
     def onEditUndo(self):
