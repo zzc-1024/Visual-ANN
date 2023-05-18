@@ -261,6 +261,30 @@ class CalculatorWindow(NodeEditorWindow):
                             nodeeditor.close()
         except Exception as e: dumpException(e)
 
+    def onFileExtend(self):
+        from qtpy.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
+
+        class Dialog(QDialog):
+            def __init__(self, parent=None):
+                super(Dialog, self).__init__(parent)
+                self.initUI()
+
+            def initUI(self):
+                layout = QVBoxLayout()
+                self.setLayout(layout)
+
+                layout.addWidget(QLabel("请选择模板操作"))
+
+                buttonBox = QDialogButtonBox(Qt.Horizontal)
+                layout.addWidget(buttonBox)
+
+                self.add = QPushButton("导入")
+                buttonBox.addButton(self.add, QDialogButtonBox.ActionRole)
+
+                self.delete = QPushButton("删除")
+                buttonBox.addButton(self.delete, QDialogButtonBox.ActionRole)
+
+
 
     def about(self):
         QMessageBox.about(
