@@ -264,7 +264,7 @@ class NodeEditorWindow(QMainWindow):
         pass
 
     def onFileExtend(self):
-        pass
+        raise NotImplementedError()
 
     def onEditUndo(self):
         """Handle Edit Undo operation"""
