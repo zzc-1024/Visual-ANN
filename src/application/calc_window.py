@@ -284,7 +284,54 @@ class CalculatorWindow(NodeEditorWindow):
                 self.delete = QPushButton("删除")
                 buttonBox.addButton(self.delete, QDialogButtonBox.ActionRole)
 
+        dialog = Dialog()
+        dialog.add.clicked.connect(self.onFileExtendAdd)
+        dialog.delete.clicked.connect(self.onFileExtendDelete)
+        dialog.exec()
 
+    def onFileExtendAdd(self):
+        fnames, filter = QFileDialog.getOpenFileNames(self, '从文件中打开', self.getFileDialogDirectory(),
+                                                      'Python files (*.py);')
+        try:
+            for filename in fnames:
+                if not filename:
+                    continue
+                copy(filename, "./extend")
+        except Exception as e:
+            dumpException(e)
+
+    def onFileExtendDelete(self):
+        # 先从指定路径获取可删除模板列表
+        path = os.curdir
+        path += "/extend"
+        root, _, files = next(os.walk(path))
+
+        # 获取可用模板
+        count: int = 0
+        lst = []
+        for iterator in files:
+            base, ext = os.path.splitext(iterator)
+            if ext != ".py":
+                continue
+            count += 1
+            lst.append(base)
+
+        # 若没有可用模板则提示错误
+        if count == 0:
+            QMessageBox.warning(self, "警告", "无可删除扩展")
+            return
+
+        # 让用户选择
+        value, ok = QInputDialog.getItem(self, "扩展列表", "请选择扩展", lst, 0, False)
+
+        # 开始删除
+        if not ok:
+            return
+        try:
+            path = os.path.join(path, value + ".py")
+            os.remove(path)
+        except Exception as e:
+            dumpException(e)
 
     def about(self):
         QMessageBox.about(
