@@ -2,7 +2,7 @@ import sys
 from threading import Thread
 
 from qtpy.QtWidgets import QPushButton, QLabel, QSpinBox, QDoubleSpinBox
-from qtpy.QtWidgets import QHBoxLayout, QVBoxLayout
+from qtpy.QtWidgets import QVBoxLayout
 from qtpy.QtWidgets import QDialog
 
 from nodeeditor.node_content_widget import QDMNodeContentWidget
@@ -74,6 +74,9 @@ class FitNode(CalcNode):
     def initInnerClasses(self):
         self.content = FitNodeContent(self)
         self.grNode = CalcGraphicsNode(self)
+        self.grNode.width = 200
+        self.grNode.height += 74
+        self.grNode.height += 52 * 2
 
     def onTrain(self):
         if self.isDirty() or self.isInvalid():

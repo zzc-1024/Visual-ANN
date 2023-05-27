@@ -188,6 +188,36 @@ AddLayerNodeContent QLabel {
   margin-top: 5px;
   font-size: 28px;
 }
+FitNodeContent QPushButton,
+FitNodeContent QSpinBox,
+FitNodeContent QDoubleSpinBox {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+DatasetContent QComboBox,
+DatasetContent QPushButton {
+  background: #666;
+  color: #fff;
+  width: 140px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 28px;
+}
+DatasetContent QLabel {
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 45px;
+  max-height: 45px;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 28px;
+}
 QGraphicsView {
   selection-background-color: #fff;
 }

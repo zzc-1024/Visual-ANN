@@ -27,7 +27,7 @@ class DatasetContent(QDMNodeContentWidget):
         self.status = QLabel("未加载")
         self.verticalBox.addWidget(self.status)
 
-        self.selection = QLabel("尚未选择数据集")
+        self.selection = QLabel("未选数据集")
         self.verticalBox.addWidget(self.selection)
 
     def serialize(self):
@@ -56,12 +56,15 @@ class DatasetNode(CalcNode):
     test = None
 
     def __init__(self, scene):
-        super().__init__(scene, inputs=[], outputs=[3, 3])
+        super().__init__(scene, inputs=[], outputs=[3])
         self.eval()
 
     def initInnerClasses(self):
         self.content = DatasetContent(self)
         self.grNode = CalcGraphicsNode(self)
+        self.grNode.width = 200
+        self.grNode.height += 74
+        self.grNode.height += 52 * 2
 
         self.content.button.clicked.connect(self.onLoadDataset)
 
