@@ -57,3 +57,4 @@ def get_class_from_opcode(op_code):
 
 # import all nodes and register them
 from src.application.nodes import *
+from src.application.extend import *
