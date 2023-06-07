@@ -69,7 +69,7 @@ class DatasetNode(CalcNode):
         self.content.button.clicked.connect(self.onLoadDataset)
 
     def onLoadDataset(self):
-        (x_train, y_train), (x_test, y_test) = tuple(), tuple()
+        (x_train, y_train), (x_test, y_test) = (None, None), (None, None)
         string = self.content.dataset.currentText()
         if string == "mnist":
             (x_train, y_train), (x_test, y_test) = mnist.load_data()
