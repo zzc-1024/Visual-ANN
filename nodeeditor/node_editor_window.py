@@ -92,6 +92,8 @@ class NodeEditorWindow(QMainWindow):
         self.fileMenu.addAction(self.actSave)
         self.fileMenu.addAction(self.actSaveAs)
         self.fileMenu.addSeparator()
+        self.fileMenu.addAction(self.actExtend)
+        self.fileMenu.addSeparator()
         self.fileMenu.addAction(self.actExit)
 
     def createEditMenu(self):
